@@ -1,5 +1,5 @@
 <?php
-    require_once 'db_config.php';
+    require_once 'config/db_config.php';
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $bookId = $_POST['bookId'];
@@ -7,7 +7,7 @@
         $deleteQuery = "DELETE FROM book WHERE id = '$bookId'";
         $deleteResult = mysqli_query($conn, $deleteQuery); 
 
-        header("Location: manage_books.php");
+        header("Location: books.php");
     }
 ?>
 
@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Book</title>
-    <link rel="stylesheet" href="delete_book.css">
+    <link rel="stylesheet" href="css/delete_book.css">
 </head>
 <body>
     <div id="delete-background" class="delete-background">

@@ -1,5 +1,5 @@
 <?php
-    require_once 'db_config.php';
+    require_once 'config/db_config.php';
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $addTitle = $_POST['title'];
@@ -35,6 +35,6 @@
             die("Unable to insert new book.");
         }
 
-        header("Location: manage_books.php");
+        header("Location: books.php");
     }
 ?>
