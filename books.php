@@ -25,6 +25,7 @@
         ?>
         <button class="tabLink" onclick="openTab(event, 'browseBooks')" id="browseTab">Browse Books</button>
         <a href="account.php"><button class="tabLink">Account</button></a>
+        <button id="logoutBtn" class="tabLink">LOGOUT</button>
     </div>
 
     <?php
@@ -80,5 +81,6 @@
     <script src="update_book.js"></script>
     <script src="delete_book.js"></script>
     <script src="tabs.js"></script>
+    <script src="logout.js"></script>
 </body>
 </html>

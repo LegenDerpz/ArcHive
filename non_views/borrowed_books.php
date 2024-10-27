@@ -12,7 +12,7 @@
         $currentUserId = $_SESSION['loggedUserId'];
 
         $browseBorrowedBookQuery = "
-            SELECT b.id, b.title, a.firstName, a.lastName, b.genre, b.publicationDate, bb.quantity, bb.borrowDate, u.id FROM book b
+            SELECT bb.id as borrowId, b.id as book_id, b.title, a.firstName, a.lastName, b.genre, b.publicationDate, bb.quantity, bb.borrowDate, u.id FROM book b
             INNER JOIN authors a ON b.authorId=a.id
             INNER JOIN borrowed_books bb ON b.id=bb.bookId
             INNER JOIN users u ON bb.userId='$currentUserId'

@@ -30,6 +30,7 @@
         <a href="home.php"><button class="tabLink">Home</button></a>
         <a href="books.php"><button class="tabLink">Books</button></a>
         <a href="account.php"><button class="tabLink">Account</button></a>
+        <button id="logoutBtn" class="tabLink">LOGOUT</button>
     </div>
     
     <div class="col-sm-6 m-3">
@@ -55,7 +56,7 @@
                 <?php
                     if(isset($searchResult)){
                         while($row = mysqli_fetch_array($searchResult)){?>
-                            <tr onclick="window.location='index.php'">
+                            <tr>
                                 <td><?=$row['username']?></td>
                                 <td><?=$row['firstName']." ".$row['lastName']?></td>
                             </tr>
@@ -63,5 +64,6 @@
             </tbody>
         </table>
     </div>
+    <script src="logout.js"></script>
 </body>
 </html>

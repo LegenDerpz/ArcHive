@@ -9,9 +9,9 @@
         $checkAvailabilityQuery = "SELECT quantity FROM book WHERE id = '$bookId'";
         $checkAvailabilityResult = mysqli_query($conn, $checkAvailabilityQuery);
 
-        $availabilityAmount = $checkAvailabilityResult->fetch_assoc();
+        $availabilityAmount = mysqli_fetch_array($checkAvailabilityResult);
 
-        if($availabilityAmount >= $borrowQuantity){
+        if($availabilityAmount['quantity'] >= $borrowQuantity){
             //Get current user ID and timestamp
             $borrowingUserId = $_SESSION['loggedUserId'];
             $borrowDate = date("Y-m-d h:i:sa");
@@ -23,16 +23,15 @@
             //Update user borrowed books table
             $addToBorrowedBooksQuery = "INSERT INTO borrowed_books (userId, bookId, quantity, borrowDate)
                                         VALUES ('$borrowingUserId', '$bookId', '$borrowQuantity', '$borrowDate');";
-            $addToBorrowedBooksResult = mysqli_query($conn, $addToBorrowedBooksQuery); 
+            $addToBorrowedBooksResult = mysqli_query($conn, $addToBorrowedBooksQuery);
 
             //Transaction Query
-            $addTransactionQuery = "INSERT INTO transactions (userId, bookId, borrowDate, status)
-                                    VALUES ('$borrowingUserId', '$bookId', '$borrowDate', 'BORROWED');";
+            $addTransactionQuery = "INSERT INTO transactions (userId, bookId, borrowDate, quantity, status)
+                                    VALUES ('$borrowingUserId', '$bookId', '$borrowDate', '$borrowQuantity', 'BORROWED');";
             $addTransactionResult = mysqli_query($conn, $addTransactionQuery); 
         }else{
             //Error message: Request amount is greater then available books
         }
-
         header("Location: books.php");
     }
 ?>
@@ -52,8 +51,8 @@
             <form action="borrow_book.php" method="POST" class="borrow-form">
                 <input type="hidden" name="bookId" id="bookIdInput">
                 <input type="number" name="borrowQuantity" id="borrowQuantity" min="1" placeholder="Quantity" required><br><br>
-                <input type="submit" value="BORROW" class="delete-btn" id="borrowBtnYes">
-                <input type="button" value="CANCEL" class="delete-btn" id="borrowBtnCancel">
+                <input type="submit" value="BORROW" class="borrow-btn" id="borrowBtnYes">
+                <input type="button" value="CANCEL" class="borrow-btn" id="borrowBtnCancel">
             </form>
         </div>
     </div>
