@@ -1,6 +1,8 @@
 <?php
     require_once 'config/db_config.php';
 
+    $target_dir = $_ENV['IMAGE_LOCATION'];
+    
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $addTitle = $_POST['title'];
         $addAuthorFirstName = $_POST['firstName'];
@@ -30,9 +32,47 @@
 
         $addBookQuery = "INSERT INTO book (title, authorId, genre, quantity, publicationDate)
                         VALUES ('$addTitle', '$authorId', '$addGenre', '$addQuantity', '$addPubDate');";
-        
-        if(!mysqli_query($conn, $addBookQuery)){
+        $addBookResult = mysqli_query($conn, $addBookQuery);
+
+        if(!$addBookResult){
             die("Unable to insert new book.");
+        }
+
+        //Check for new genre and add if does not exist
+        $genreArray = str_getcsv($addGenre);
+        foreach($genreArray as $genreArrayRow){
+            $genreArrayRow = trim($genreArrayRow);
+            $checkGenreQuery = "SELECT * FROM genres WHERE genre = '$genreArrayRow'";
+            $checkGenreResult = mysqli_query($conn, $checkGenreQuery);
+            
+            if($checkGenreResult->num_rows == 0){
+                $addNewGenreQuery = "INSERT INTO genres(genre) VALUES ('$genreArrayRow');";
+                $addNewGenreResult = mysqli_query($conn, $addNewGenreQuery);
+            }
+        }
+
+        //Add Book Image
+        $selectNewBookQuery = "SELECT id FROM book WHERE title = '$addTitle' && authorId = '$authorId' && genre = '$addGenre' 
+                                && quantity = '$addQuantity' && publicationDate = '$addPubDate'";
+        $selectNewBookResult = mysqli_query($conn, $selectNewBookQuery);
+
+        $newBookRow = $selectNewBookResult->fetch_assoc();
+        $newBookId = $newBookRow['id'];
+
+        $newBookDir = $_ENV['IMAGE_LOCATION']."$newBookId/";
+        mkdir($newBookDir);
+        $imageName = basename($_FILES['bookImage']["name"]);
+        $newBookImageLocation = "$newBookId/" . $imageName;
+
+        $addNewBookImageQuery = "UPDATE book SET imageLocation = '$newBookImageLocation' WHERE id = '$newBookId';";
+        $addNewBookImageResult = mysqli_query($conn, $addNewBookImageQuery);
+
+        $target_file = $newBookDir . $imageName;
+
+        if(move_uploaded_file($_FILES['bookImage']['tmp_name'], $target_file)){
+            echo 'Success';
+        }else{
+            echo 'Error uploading file.';
         }
 
         header("Location: books.php");

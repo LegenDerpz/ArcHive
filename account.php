@@ -12,18 +12,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Account</title>
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/sidebar.css">
 </head>
 <body>
-    <div class="tab">
-        <a href="home.php"><button class="tabLink">Home</button></a>
-        <a href="books.php"><button class="tabLink">Books</button></a>
-        <button class="tabLink" onclick="openTab(event, 'borrowedBooks')" id="defaultOpen">Borrowed Books</button>
-        <button class="tabLink" onclick="openTab(event, 'transactions')" id="transactionsTab">Transactions</button>
-        <button id="logoutBtn" class="tabLink">LOGOUT</button>
-    </div>
-    
+    <div class="wrapper">
+        <aside id="sidebar">
+            <div class="d-flex">
+                <a class="toggle-btn" href="#">
+                    <i class="lni lni-grid-alt"></i>
+                </a>
+                <div class="sidebar-logo">
+                    <a href="#">ArcHive</a>
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="home.php" class="sidebar-link">
+                        <i class="bi bi-house-door"></i> <!-- Home icon -->
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="search_users.php" class="sidebar-link">
+                        <i class="bi bi-search"></i> <!-- Search Users icon -->
+                        <span>Search Users</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="books.php" class="sidebar-link">
+                        <i class="bi bi-collection"></i> <!-- Books icon -->
+                        <span>Books</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link" onclick="openTab(event, 'borrowedBooks')" id="defaultOpen">
+                        <i class="bi bi-journal"></i> <!-- Borrowed Books icon -->
+                        <span>Borrowed Books</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link" onclick="openTab(event, 'transactions')" id="transactionsTab">
+                        <i class="bi bi-cash-stack"></i> <!-- Transactions icon -->
+                        <span>Transactions</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="#" id="logoutBtn" class="sidebar-link">
+                    <i class="lni lni-exit"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+<div class="main p-3">
+
     <div id="borrowedBooks" class="tabContent col-sm-8 m-3">
         <h2>Borrowed Books</h2>
         <!-- ADD GROUP BY FILTER -->
@@ -46,6 +95,7 @@
                     <th>Publication Date</th>
                     <th>Borrow Date</th>
                     <th>Quantity</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -110,8 +160,12 @@
             </tbody>
         </table>
     </div>
+
+</div>
     <script src="return_book.js"></script>
     <script src="tabs.js"></script>
     <script src="logout.js"></script>
+    <script src="home_sample.js"></script>
+
 </body>
 </html>

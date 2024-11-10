@@ -1,0 +1,120 @@
+
+.main {
+    background-color: #f9f9f9; /* Very light background for the main area */
+    color: #312229;
+    padding: 3rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #54101d; /* Dark red for headings */
+    font-size: 2rem; /* Increased font size */
+    margin-bottom: 2rem;
+    text-align: center; /* Centered text */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.genre-header {
+    color: #54101d;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    margin-top: 3vh;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Increased gap for spacing */
+    margin-bottom: 2rem; /* More margin for separation */
+}
+
+input[type="text"] {
+    border: 2px solid #b18653; /* Warm brown border */
+    background-color: #f8f8f8; /* Light background for inputs */
+    color: #312229; /* Dark text */
+    padding: 0.75rem 1rem; /* More padding */
+    border-radius: 0.5rem; /* Rounded corners */
+    transition: border 0.3s, box-shadow 0.3s; /* Smooth transitions */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+input[type="text"]:focus {
+    border-color: #54101d; /* Dark red on focus */
+    outline: none; /* Remove outline */
+    box-shadow: 0 0 5px rgba(84, 16, 29, 0.5); /* Glow effect */
+}
+
+input[type="submit"] {
+    background-color: #b18653; /* Warm brown */
+    color: #ffffff; /* White text */
+    border: none;
+    padding: 0.75rem 1.5rem; /* More padding for the button */
+    border-radius: 0.5rem; /* Rounded corners */
+    transition: background 0.3s, transform 0.2s; /* Smooth transitions */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Light shadow */
+    cursor: pointer; /* Pointer cursor */
+}
+
+input[type="submit"]:hover {
+    background-color: #54101d; /* Dark red on hover */
+    transform: translateY(-2px); /* Lift effect */
+}
+
+.alert {
+    background-color: #ffebc5; /* Soft light yellow for alert background */
+    color: #312229; /* Dark text */
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.table {
+    background-color: #ffffff; /* White background */
+    color: #312229; /* Dark text */
+    border: none;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    overflow: hidden; /* Prevent overflow */
+}
+
+.table th, .table td {
+    border: none; /* Remove borders */
+    padding: 1rem; /* More padding for readability */
+}
+
+.table th {
+    background-color: #b18653; /* Warm brown for headers */
+    color: #ffffff; /* White text */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9; /* Light gray for odd rows */
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e8e8e8; /* Light gray on hover */
+    color: #54101d; /* Dark red text on hover */
+    transition: background 0.3s; /* Smooth transition on hover */
+}
+
+/* Additional styling for buttons to be more modern */
+.btn {
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Add shadow */
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-primary {
+    background-color: #54101d; /* Dark red */
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #b18653; /* Warm brown on hover */
+    transform: translateY(-2px); /* Lift effect */
+}

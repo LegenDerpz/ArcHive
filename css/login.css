@@ -1,0 +1,109 @@
+body {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #d5c5ae;
+    overflow: hidden; /* Hide scrollbars if any */
+}
+
+/* Blur background */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('assets/background1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(8px);
+    z-index: -1;
+}
+
+/* Dark overlay */
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: -1; /* Ensure it stays behind the content */
+}
+
+.login-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 30px; /* Reduced padding */
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 350px; /* Reduced max-width for a smaller container */
+    text-align: center;
+    position: relative; /* For stacking context */
+    z-index: 1; /* Ensure it stays above the background */
+}
+
+.login-header {
+    font-size: 22px; /* Slightly smaller font */
+    font-weight: bold;
+    color: #b18653;
+    margin-bottom: 15px; /* Reduced margin */
+}
+
+.logo {
+    width: 100px; /* Smaller logo size */
+    margin-bottom: 10px;
+}
+
+.input-group .form-control {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #d5c5ae;
+    border-radius: 0;
+    color: #312229;
+    padding-left: 40px;
+}
+
+.input-group .form-control:focus {
+    border-bottom: 2px solid #b18653;
+    outline: none;
+    box-shadow: none;
+}
+
+.input-group-text {
+    background: none;
+    border: none;
+    position: absolute;
+    left: 0;
+    color: #b18653;
+}
+
+.form-check-label {
+    color: #312229;
+}
+
+.btn-primary {
+    background-color: #b18653;
+    border-color: #b18653;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #54101d;
+    border-color: #54101d;
+}
+
+a {
+    color: #47596f;
+}
+
+a:hover {
+    color: #b18653;
+    text-decoration: none;
+}

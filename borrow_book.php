@@ -47,7 +47,35 @@
 <body>
     <div id="borrow-background" class="borrow-background">
         <div id="borrow-container" class="borrow-container">
-            <h2 class="borrow-header">BORROW</h2><br>
+        <form action="borrow_book.php" method="GET">
+            <input type="hidden" name="currentBookId" id="currentBookId">
+        </form>
+            <?php
+                // echo "Book ID: " . $_POST['currentBookId'];
+                // $currentBookId = isset($_GET['currentBookId']) ? $_GET['currentBookId']:null;
+
+                // if($currentBookId){
+                //     echo "Book ID: " . $currentBookId;
+                // }
+                // $currentBookQuery = "
+                //             SELECT b.id, b.title, a.firstName, a.lastName, b.genre, b.publicationDate, b.quantity, b.imageLocation FROM book b
+                //             INNER JOIN authors a ON b.authorId=a.id
+                //             WHERE b.id = '$currentBookId'";
+
+                // $currentBookResult = mysqli_query($conn, $currentBookQuery);
+                // $bookRow = mysqli_fetch_assoc($currentBookResult);
+
+                //Load Image
+                // $imageLocation = $_ENV['IMAGE_LOCATION'] . $bookRow['imageLocation'];
+                // $nullLocation = $bookRow['id'] . "/";
+                
+                //If image is null, not found/assigned, or does not exist, assign a placeholder image
+                // if($bookRow['imageLocation'] == '' || $bookRow['imageLocation'] == $nullLocation || !file_exists($imageLocation)){
+                //     $imageLocation = $_ENV['IMAGE_LOCATION'] . "default/placeholder_thumbnail.png";
+                // }
+            ?>
+            <h2 class="bookTitle">TITLE</h2><br>
+            <img class="bookImage" src="<?= $imageLocation ?>" alt="Book Image">
             <form action="borrow_book.php" method="POST" class="borrow-form">
                 <input type="hidden" name="bookId" id="bookIdInput">
                 <input type="number" name="borrowQuantity" id="borrowQuantity" min="1" placeholder="Quantity" required><br><br>

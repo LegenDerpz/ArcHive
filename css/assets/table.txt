@@ -1,0 +1,173 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #312229; /* Dark background for a sleek feel */
+    color: #d5c5ae; /* Light beige text for contrast */
+}
+
+.main {
+    background-color: #ffffff;
+    color: #d5c5ae;
+    padding: 3rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    color: #d5c5ae;
+    font-size: 1.8rem;
+}
+
+.search-container form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+input[type="text"] {
+    border: 1px solid #b18653;
+    background-color: #47596f;
+    color: #d5c5ae;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    width: 100%;
+}
+
+input[type="submit"] {
+    background-color: #b18653;
+    color: #312229;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #d5c5ae;
+    color: #312229;
+}
+
+.alert {
+    background-color: #54101d;
+    color: #d5c5ae;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.table {
+    background-color: #47596f;
+    color: #d5c5ae;
+    border: none;
+    margin-top: 1rem;
+    border-radius: 5px;
+}
+
+.table th, .table td {
+    border: none;
+    padding: 1rem;
+}
+
+.table th {
+    background-color: #b18653;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #54101d;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #b18653;
+    color: #312229;
+}
+----------------------------------------------------------------------------------------
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #d5c5ae; /* Light beige background for a warm feel */
+    color: #312229; /* Dark brown text for contrast */
+}
+
+.main {
+    background-color: #f9f9f9; /* Very light background for the main area */
+    color: #312229;
+    padding: 3rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #54101d; /* Dark red for the heading to stand out */
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.search-container form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+input[type="text"] {
+    border: 1px solid #b18653; /* Warm brown border for input */
+    background-color: #ffffff; /* White background for input for clarity */
+    color: #312229; /* Dark text color */
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    width: 100%;
+    transition: border 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #54101d; /* Change border color on focus */
+    outline: none; /* Remove outline */
+}
+
+input[type="submit"] {
+    background-color: #b18653; /* Warm brown for button */
+    color: #ffffff; /* White text for button */
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+input[type="submit"]:hover {
+    background-color: #54101d; /* Dark red on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+.alert {
+    background-color: #ffcccb; /* Light red alert background */
+    color: #312229;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.table {
+    background-color: #ffffff; /* White background for the table */
+    color: #312229;
+    border: none;
+    margin-top: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+    border: none;
+    padding: 1rem;
+}
+
+.table th {
+    background-color: #b18653; /* Warm brown for headers */
+    color: #ffffff; /* White text for headers */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2; /* Light gray for odd rows */
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e0e0e0; /* Light gray on hover */
+    color: #54101d; /* Dark red text on hover */
+}
