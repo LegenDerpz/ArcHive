@@ -114,7 +114,7 @@
                                 if(isset($genreFilteredAllBooksResult)){
                                     if($genreFilteredAllBooksResult->num_rows > 0){ 
                             ?>
-                                <td><h3 class="genre-header"><?= $g_row['genre'] ?></h3>
+                            <td><h3 class="genre-header"><?= $g_row['genre'] ?></h3>
                                 <?php }
                                     while($row = mysqli_fetch_array($genreFilteredAllBooksResult)){
                                         $location = $_ENV['IMAGE_LOCATION'] . $row['imageLocation'];
@@ -128,7 +128,18 @@
                                     <!-- Book Image and Label Container -->
                                     <div style="float: left; text-align: center;">
                                         <input type="hidden" value="<?= $row['title'] ?>" id="<?= $row['id'] . "-title" ?>">
-                                        <input type="hidden" value="<?= $_ENV['IMAGE_LOCATION'] . $row['imageLocation'] ?>" id="<?= $row['id'] . "-image" ?>">
+                                        <input type="hidden" value=
+                                            "
+                                                <?php 
+                                                    $imgLocation = $_ENV['IMAGE_LOCATION'] . $row['imageLocation'];
+                                                    if($row['imageLocation'] == '' || $row['imageLocation'] == $nullLocation || !file_exists($location)){
+                                                        $imgLocation = $_ENV['IMAGE_LOCATION'] . "default/placeholder_thumbnail.png";
+                                                    }
+                                                    echo $imgLocation;
+                                                ?>
+                                            " 
+                                            id="<?= $row['id'] . "-image" ?>"
+                                        >
                                         <input type="hidden" value="<?= $row['description'] ?>" id="<?= $row['id'] . "-description" ?>">
                                         <input type="hidden" value="<?= $row['genre'] ?>" id="<?= $row['id'] . "-genre" ?>">
                                         <input type="hidden" value="<?= $row['firstName'] . " " . $row['lastName'] ?>" id="<?= $row['id'] . "-author" ?>">
@@ -142,6 +153,7 @@
                                     </div>
                                 <?php 
                                     }
+                                    //Reset table data index to 0 to recreate the table
                                     mysqli_data_seek($genreFilteredAllBooksResult, 0);
                                 } ?>
                             </td>
