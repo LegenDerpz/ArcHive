@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Nov 10, 2024 at 03:03 PM
+-- Generation Time: Nov 12, 2024 at 12:57 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -58,24 +58,25 @@ CREATE TABLE `book` (
   `genre` varchar(255) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `publicationDate` date DEFAULT NULL,
-  `imageLocation` longtext DEFAULT NULL
+  `imageLocation` longtext DEFAULT NULL,
+  `description` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `book`
 --
 
-INSERT INTO `book` (`id`, `title`, `authorId`, `genre`, `quantity`, `publicationDate`, `imageLocation`) VALUES
-('04d737aa-944d-11ef-97eb-244bfecb82ff', 'Python for Idiots', '04d6a829-944d-11ef-97eb-244bfecb82ff', 'Technology, Educational, Programming', 197, '2024-05-15', NULL),
-('0b0ad9a8-9f4d-11ef-b08b-244bfecb82ff', 'The Chronicles of Narnia: The Voyage of the Dawn Treader', 'd2666cb8-9f4b-11ef-b08b-244bfecb82ff', 'Fantasy, Action, Adventure, Literature', 100, '1952-09-15', '0b0ad9a8-9f4d-11ef-b08b-244bfecb82ff/the-voyage-of-the-dawn-treader.jpg'),
-('22dff7be-9ec5-11ef-82cd-244bfecb82ff', 'Buko Juice', '0d49cef1-9e93-11ef-82cd-244bfecb82ff', 'Fantasy, Fiction, Gaming', 345, '2024-10-29', '22dff7be-9ec5-11ef-82cd-244bfecb82ff/Automata Quiz 6 Part 2 - Dela Victoria.jpg'),
-('8b56887d-92b2-11ef-a137-244bfecb82ff', 'Harry Potter and the Chamber of Secrets', 'd8b52768-92b1-11ef-a137-244bfecb82ff', 'Fantasy', 90, '1998-07-02', '8b56887d-92b2-11ef-a137-244bfecb82ff/harry-potter-and-the-chamber-of-secrets-6.jpg'),
-('a5975cf0-92f0-11ef-a137-244bfecb82ff', 'Harry Potter and the Sorcerers Stone', 'd8b52768-92b1-11ef-a137-244bfecb82ff', 'Fantasy', 99, '1997-06-25', 'a5975cf0-92f0-11ef-a137-244bfecb82ff/harry-potter-and-the-sorcerers-stone-cover.jpg'),
-('abc20260-9f37-11ef-b08b-244bfecb82ff', 'Read or Gay', '0d49cef1-9e93-11ef-82cd-244bfecb82ff', 'Romance, Fantasy, Drama', 34, '2024-11-20', 'abc20260-9f37-11ef-b08b-244bfecb82ff/peepo.jpg'),
-('b3a704f1-944c-11ef-97eb-244bfecb82ff', 'How To Git Gud', 'b3a6d788-944c-11ef-97eb-244bfecb82ff', 'Gaming', 169, '2024-01-07', NULL),
-('c3f02059-9f4c-11ef-b08b-244bfecb82ff', 'The Chronicles of Narnia: Prince Caspian - The Return to Narnia', 'd2666cb8-9f4b-11ef-b08b-244bfecb82ff', 'Fantasy, Action, Adventure, Literature', 100, '1952-09-15', 'c3f02059-9f4c-11ef-b08b-244bfecb82ff/prince-caspian-the-chronicles-of-narnia-book-4.jpg'),
-('d266bba4-9f4b-11ef-b08b-244bfecb82ff', 'Chronicles of Narnia: The Lion, The Witch, and The Wardrobe', 'd2666cb8-9f4b-11ef-b08b-244bfecb82ff', 'Fantasy, Action, Adventure, Literature', 100, '1950-10-16', 'd266bba4-9f4b-11ef-b08b-244bfecb82ff/the-lion-the-witch-and-the-wardrobe-the-chronicles-of-narnia-book-2.jpg'),
-('d897a622-92b8-11ef-a137-244bfecb82ff', 'Percy Jackson and the Olympians: The Lightning Thief', 'd89725c7-92b8-11ef-a137-244bfecb82ff', 'Fantasy', 80, '2005-06-28', 'd897a622-92b8-11ef-a137-244bfecb82ff/percy-jackson-and-the-olympians-book-one-the-lightning-thief-disney-tie-in-edition.jpg');
+INSERT INTO `book` (`id`, `title`, `authorId`, `genre`, `quantity`, `publicationDate`, `imageLocation`, `description`) VALUES
+('04d737aa-944d-11ef-97eb-244bfecb82ff', 'Python for Idiots', '04d6a829-944d-11ef-97eb-244bfecb82ff', 'Technology, Educational, Programming', 197, '2024-05-15', NULL, NULL),
+('0b0ad9a8-9f4d-11ef-b08b-244bfecb82ff', 'The Chronicles of Narnia: The Voyage of the Dawn Treader', 'd2666cb8-9f4b-11ef-b08b-244bfecb82ff', 'Fantasy, Action, Adventure, Literature', 100, '1952-09-15', '0b0ad9a8-9f4d-11ef-b08b-244bfecb82ff/the-voyage-of-the-dawn-treader.jpg', NULL),
+('22dff7be-9ec5-11ef-82cd-244bfecb82ff', 'Buko Juice', '0d49cef1-9e93-11ef-82cd-244bfecb82ff', 'Fantasy, Fiction, Gaming', 345, '2024-10-29', '22dff7be-9ec5-11ef-82cd-244bfecb82ff/Automata Quiz 6 Part 2 - Dela Victoria.jpg', NULL),
+('8b56887d-92b2-11ef-a137-244bfecb82ff', 'Harry Potter and the Chamber of Secrets', 'd8b52768-92b1-11ef-a137-244bfecb82ff', 'Fantasy', 90, '1998-07-02', '8b56887d-92b2-11ef-a137-244bfecb82ff/harry-potter-and-the-chamber-of-secrets-6.jpg', NULL),
+('a5975cf0-92f0-11ef-a137-244bfecb82ff', 'Harry Potter and the Sorcerers Stone', 'd8b52768-92b1-11ef-a137-244bfecb82ff', 'Fantasy', 99, '1997-06-25', 'a5975cf0-92f0-11ef-a137-244bfecb82ff/harry-potter-and-the-sorcerers-stone-cover.jpg', NULL),
+('abc20260-9f37-11ef-b08b-244bfecb82ff', 'Read or Gay', '0d49cef1-9e93-11ef-82cd-244bfecb82ff', 'Romance, Fantasy, Drama', 34, '2024-11-20', 'abc20260-9f37-11ef-b08b-244bfecb82ff/peepo.jpg', 'Read this book or u gay'),
+('b3a704f1-944c-11ef-97eb-244bfecb82ff', 'How To Git Gud', 'b3a6d788-944c-11ef-97eb-244bfecb82ff', 'Gaming', 169, '2024-01-07', NULL, NULL),
+('c3f02059-9f4c-11ef-b08b-244bfecb82ff', 'The Chronicles of Narnia: Prince Caspian - The Return to Narnia', 'd2666cb8-9f4b-11ef-b08b-244bfecb82ff', 'Fantasy, Action, Adventure, Literature', 100, '1952-09-15', 'c3f02059-9f4c-11ef-b08b-244bfecb82ff/prince-caspian-the-chronicles-of-narnia-book-4.jpg', NULL),
+('d266bba4-9f4b-11ef-b08b-244bfecb82ff', 'Chronicles of Narnia: The Lion, The Witch, and The Wardrobe', 'd2666cb8-9f4b-11ef-b08b-244bfecb82ff', 'Fantasy, Action, Adventure, Literature', 100, '1950-10-16', 'd266bba4-9f4b-11ef-b08b-244bfecb82ff/the-lion-the-witch-and-the-wardrobe-the-chronicles-of-narnia-book-2.jpg', NULL),
+('d897a622-92b8-11ef-a137-244bfecb82ff', 'Percy Jackson and the Olympians: The Lightning Thief', 'd89725c7-92b8-11ef-a137-244bfecb82ff', 'Fantasy', 80, '2005-06-28', 'd897a622-92b8-11ef-a137-244bfecb82ff/percy-jackson-and-the-olympians-book-one-the-lightning-thief-disney-tie-in-edition.jpg', NULL);
 
 -- --------------------------------------------------------
 
