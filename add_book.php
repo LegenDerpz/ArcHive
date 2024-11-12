@@ -8,6 +8,7 @@
         $addAuthorFirstName = $_POST['firstName'];
         $addAuthorLastName = $_POST['lastName'];
         $addGenre = $_POST['genre'];
+        $addDescription = $_POST['description'];
         $addQuantity = $_POST['quantity'];
         $addPubDate = $_POST['publicationDate'];
 
@@ -30,8 +31,8 @@
         }
         //
 
-        $addBookQuery = "INSERT INTO book (title, authorId, genre, quantity, publicationDate)
-                        VALUES ('$addTitle', '$authorId', '$addGenre', '$addQuantity', '$addPubDate');";
+        $addBookQuery = "INSERT INTO book (title, authorId, genre, quantity, publicationDate, description)
+                        VALUES ('$addTitle', '$authorId', '$addGenre', '$addQuantity', '$addPubDate', '$addDescription);";
         $addBookResult = mysqli_query($conn, $addBookQuery);
 
         if(!$addBookResult){

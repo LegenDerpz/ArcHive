@@ -74,11 +74,21 @@
                 //     $imageLocation = $_ENV['IMAGE_LOCATION'] . "default/placeholder_thumbnail.png";
                 // }
             ?>
-            <h2 class="bookTitle">TITLE</h2><br>
-            <img class="bookImage" src="<?= $imageLocation ?>" alt="Book Image">
+            <img class="bookImage" src="<?= $imageLocation ?>" id="currentBookImage" alt="Book Image" style="float: left;">
+            <h2 class="bookTitle" id="currentBookTitle">TITLE</h2><br>
+            <p id="currentBookAuthor">Author</p>
+            <p id="currentBookDescription">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in turpis non ante semper interdum sit amet porttitor lacus. 
+                In ligula turpis, auctor eget molestie ut, pretium sed erat. Mauris finibus, erat et blandit sagittis, felis dolor pulvinar orci, 
+                quis commodo nisi ex sit amet arcu.
+            </p>
+            <p id="currentBookGenre">Genre</p>
+            <p id="currentBookPubDate">Publication Date</p>
+            <p id="currentBookQuantity">Quantity</p>
+            
             <form action="borrow_book.php" method="POST" class="borrow-form">
                 <input type="hidden" name="bookId" id="bookIdInput">
-                <input type="number" name="borrowQuantity" id="borrowQuantity" min="1" placeholder="Quantity" required><br><br>
+                <input type="number" name="borrowQuantity" id="borrowQuantity" min="1" placeholder="Enter borrow quantity" required><br><br>
                 <input type="submit" value="BORROW" class="borrow-btn" id="borrowBtnYes">
                 <input type="button" value="CANCEL" class="borrow-btn" id="borrowBtnCancel">
             </form>

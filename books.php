@@ -101,7 +101,7 @@
                             $currentGenre = $g_row['genre'];
 
                             $genreFilteredAllBooksQuery = "
-                            SELECT b.id, b.title, a.firstName, a.lastName, b.genre, b.publicationDate, b.quantity, b.imageLocation FROM book b
+                            SELECT b.id, b.title, a.firstName, a.lastName, b.genre, b.publicationDate, b.quantity, b.imageLocation, b.description FROM book b
                             INNER JOIN authors a ON b.authorId=a.id
                             WHERE genre LIKE '%$currentGenre%' && (b.title LIKE '$bookBrowse%' or a.firstName LIKE '$bookBrowse%' or a.lastName LIKE '$bookBrowse%')";
 
@@ -127,6 +127,14 @@
                                 ?>
                                     <!-- Book Image and Label Container -->
                                     <div style="float: left; text-align: center;">
+                                        <input type="hidden" value="<?= $row['title'] ?>" id="<?= $row['id'] . "-title" ?>">
+                                        <input type="hidden" value="<?= $_ENV['IMAGE_LOCATION'] . $row['imageLocation'] ?>" id="<?= $row['id'] . "-image" ?>">
+                                        <input type="hidden" value="<?= $row['description'] ?>" id="<?= $row['id'] . "-description" ?>">
+                                        <input type="hidden" value="<?= $row['genre'] ?>" id="<?= $row['id'] . "-genre" ?>">
+                                        <input type="hidden" value="<?= $row['firstName'] . " " . $row['lastName'] ?>" id="<?= $row['id'] . "-author" ?>">
+                                        <input type="hidden" value="<?= $row['publicationDate'] ?>" id="<?= $row['id'] . "-pubDate" ?>">
+                                        <input type="hidden" value="<?= $row['quantity'] ?>" id="<?= $row['id'] . "-quantity" ?>">
+
                                         <a onclick="borrowPrompt('<?= $row['id']; ?>')">
                                             <img class="thumbnail" src="<?=$location?>" alt="Thumbnail"><br>
                                         </a>

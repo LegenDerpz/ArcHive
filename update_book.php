@@ -6,6 +6,7 @@
         $updateFirstName = $_POST['updateFirstName'];
         $updateLastName = $_POST['updateLastName'];
         $updateGenre = $_POST['updateGenre'];
+        $updateDescription = $_POST['updateDescription'];
         $updatePublicationDate = $_POST['updatePublicationDate'];
         $updateQuantity = $_POST['updateQuantity'];
 
@@ -16,6 +17,7 @@
         $previousBookImageFile = '';
 
         if($updateTitle !== ''){$updates[] = "title = '$updateTitle'";}
+        if($updateDescription !== ''){$updates[] = "description = '$updateDescription'";}
 
         if($updateGenre !== ''){
             $updates[] = "genre = '$updateGenre'";
@@ -124,6 +126,8 @@
                 <input type="text" name="updateLastName" placeholder="Last Name"><br><br>
                 <label>Genre</label><br>
                 <input type="text" name="updateGenre" placeholder="Genre"><br><br>
+                <label>Description</label><br>
+                <textarea id="inputDescription" name="updateDescription" placeholder="Enter description" rows="7" cols="40"></textarea><br><br>
                 <label>Quantity</label><br>
                 <input type="number" name="updateQuantity" min="0" placeholder="Quantity"><br><br>
                 <label>Publication Date</label><br>
