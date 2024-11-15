@@ -8,7 +8,7 @@
         }else{
             $usernameSearch = '';
         }
-        $searchQuery = "SELECT username, firstName, lastName FROM users
+        $searchQuery = "SELECT id, username, firstName, lastName FROM users
                 WHERE username LIKE '$usernameSearch%' OR firstName LIKE '$usernameSearch%' OR lastName LIKE '$usernameSearch%';";
         
         $searchResult = mysqli_query($conn, $searchQuery);
@@ -29,7 +29,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
-     <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/home.css">
 </head>
 
@@ -103,7 +103,7 @@
                 <tbody>
                     <?php if (isset($searchResult)): ?>
                         <?php while ($row = mysqli_fetch_array($searchResult)): ?>
-                            <tr>
+                            <tr onclick="viewTransactionHistory('<?=$row['id']?>')">
                                 <td><?= htmlspecialchars($row['username']) ?></td>
                                 <td><?= htmlspecialchars($row['firstName'] . " " . $row['lastName']) ?></td>
                             </tr>
@@ -122,7 +122,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="home_sample.js"></script>
     <script src="logout.js"></script>
-
+    <script>
+        const viewTransactionHistory = (id) => {
+            window.location.href = "user_transaction_history.php?id=" + id;
+        }
+    </script>
 </body>
 
 </html>
