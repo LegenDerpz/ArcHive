@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  color: #d5c5ae;
+  overflow: hidden;
+}
+
+/* Background blur */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('assets/background1.jpg') no-repeat center center fixed;
+  background-size: cover;
+  filter: blur(0.5em);
+  z-index: -1;
+}
+
+/* Dark overlay */
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.signup-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2em;
+  border-radius: 0.5em;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
+  width: 90%; /* Flexible width */
+  max-width: 20em; /* Smaller maximum width */
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  margin-top: 3em; /* Added margin to move it down from the top */
+}
+
+.signup-header {
+  font-size: 1.2em; /* Smaller font size */
+  font-weight: bold;
+  color: #b18653;
+  margin-bottom: 1em;
+}
+
+.logo {
+  width: 8em; /* Smaller logo size */
+  margin-bottom: 0.8em;
+}
+
+/* Styling for input fields with icons */
+.input-group {
+  position: relative;
+  margin-bottom: 0.8em;
+}
+
+.input-group .form-control {
+  background-color: transparent;
+  border: none;
+  border-bottom: 0.1em solid #d5c5ae;
+  border-radius: 0;
+  color: #312229;
+  padding-left: 2em; /* Space for icon */
+}
+
+.input-group .form-control::placeholder {
+  color: #a9a9a9; /* Lighter shade for placeholder text */
+}
+
+.input-group .form-control:focus {
+  border-bottom: 0.1em solid #b18653;
+  outline: none;
+  box-shadow: none;
+}
+
+.input-group-prepend {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.input-group-text {
+  background: none;
+  border: none;
+  color: #b18653;
+  font-size: 1em; /* Reduced size */
+  padding: 0;
+}
+
+.btn-primary {
+  background-color: #b18653;
+  border-color: #b18653;
+  font-weight: bold;
+  width: 100%;
+  padding: 0.5em; /* Smaller padding */
+}
+
+.btn-primary:hover {
+  background-color: #54101d;
+  border-color: #54101d;
+}
+
+.login-link {
+  color: #47596f;
+  font-weight: bold;
+  font-size: 0.9em; /* Reduced font size */
+}
+
+.login-link:hover {
+  color: #b18653;
+  text-decoration: underline;
+}

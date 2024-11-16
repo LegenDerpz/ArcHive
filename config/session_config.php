@@ -5,7 +5,7 @@
         header("Location: login.php");
     }
 
-    $sessionTimeout = 60 * 10;
+    $sessionTimeout = 60 * 30;
 
     if(isset($_SESSION['LAST_ACTIVITY'])){
         $lastActivity = $_SESSION['LAST_ACTIVITY'];

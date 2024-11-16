@@ -26,6 +26,8 @@
                     <th>Genre</th>
                     <th>Publication Date</th>
                     <th>Quantity</th>
+                    <th>Update</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
