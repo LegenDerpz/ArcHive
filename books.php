@@ -25,7 +25,7 @@
     <div class="wrapper">
         <aside id="sidebar">
             <div class="d-flex">
-                <a class="toggle-btn" href="#">
+                <a class="toggle-btn" href="#" id="sidebar-button">
                     <i class="lni lni-grid-alt"></i>
                 </a>
                 <div class="sidebar-logo">
@@ -39,19 +39,13 @@
                         <span>Home</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="search_users.php" class="sidebar-link">
-                        <i class="bi bi-search"></i> <!-- Search Users icon -->
-                        <span>Search Users</span>
-                    </a>
-                </li>
                 <?php 
                     if (isset($_SESSION['loggedUserType']) && $_SESSION['loggedUserType'] == 'ADMIN') {
                         include_once 'admin_tabs.php';
                     }
                 ?>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link" onclick="openTab(event, 'browseBooks')" id="browseTab">
+                    <a href="#" class="sidebar-link" onclick="openTab(event, 'browseBooks', 'browseTab', 'booksPage')" id="browseTab">
                         <i class="bi bi-collection"></i> <!-- Books icon -->
                         <span>Browse Books</span>
                     </a>
@@ -111,7 +105,7 @@
 
                             $genreFilteredAllBooksResult = mysqli_query($conn, $genreFilteredAllBooksQuery);
             ?>
-             
+            
                             <?php 
                                 if(isset($genreFilteredAllBooksResult)){
                                     if($genreFilteredAllBooksResult->num_rows > 0){ 
@@ -134,7 +128,7 @@
                                         }
                                 ?>
                                     <!-- Book Image and Label Container -->
-                                    <div>
+                                    <div style="text-align: center;">
                                         <input type="hidden" value="<?= $row['title'] ?>" id="<?= $row['id'] . "-title" ?>">
                                         <input type="hidden" value=
                                             "
@@ -154,7 +148,7 @@
                                         <input type="hidden" value="<?= $row['publicationDate'] ?>" id="<?= $row['id'] . "-pubDate" ?>">
                                         <input type="hidden" value="<?= $row['quantity'] ?>" id="<?= $row['id'] . "-quantity" ?>">
 
-                                        <div class="min-w-40">
+                                        <div class="min-w-40 thumbnail">
                                                 <a onclick="borrowPrompt('<?= $row['id']; ?>')">
                                                     <img class="w-32 h-40" src="<?=$location?>" alt="Thumbnail"><br>
                                                 </a>
@@ -199,6 +193,13 @@
                 genrasContainer.children[index].children[2].scrollBy({left: 600, behavior: "smooth"})
             });
         }
+    </script>
+    <script>
+        // window.onload = function(){
+        //     setTimeout(() => {
+        //         document.getElementById('sidebar-button').click();
+        //     }, 300);
+        // }
     </script>
 </body>
 </html>

@@ -22,7 +22,7 @@
 
 
         $bookSearchQuery = "
-            SELECT b.id, b.title, a.firstName, a.lastName, b.genre, b.publicationDate, b.quantity, b.imageLocation FROM book b
+            SELECT b.id, b.title, a.firstName, a.lastName, b.genre, b.publicationDate, b.quantity, b.imageLocation, b.description FROM book b
             INNER JOIN authors a ON b.authorId=a.id
             WHERE b.title LIKE '$bookSearch%' or a.firstName LIKE '$bookSearch%' or a.lastName LIKE '$bookSearch%'";
 

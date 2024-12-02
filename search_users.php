@@ -8,7 +8,7 @@
         }else{
             $usernameSearch = '';
         }
-        $searchQuery = "SELECT id, username, firstName, lastName FROM users
+        $searchQuery = "SELECT id, username, firstName, lastName, userType FROM users
                 WHERE username LIKE '$usernameSearch%' OR firstName LIKE '$usernameSearch%' OR lastName LIKE '$usernameSearch%';";
         
         $searchResult = mysqli_query($conn, $searchQuery);
@@ -31,13 +31,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/search_users.css">
 </head>
 
 <body>
     <div class="wrapper">
       <aside id="sidebar">
         <div class="d-flex">
-            <button class="toggle-btn" type="button">
+            <button class="toggle-btn" type="button" id="sidebar-button">
                 <i class="lni lni-grid-alt"></i>
             </button>
             <div class="sidebar-logo">
@@ -81,8 +82,8 @@
         <div class="search-section">
             <h2 class="text-center my-4">Search Users</h2>
             <div class="search-container mb-3">
-                <form action="home.php" method="GET" class="d-flex">
-                    <input type="text" id="searchUser" name="searchUser" placeholder="Search user" class="form-control me-2" required>
+                <form action="search_users.php" method="GET" class="d-flex">
+                    <input type="text" id="searchUser" name="searchUser" placeholder="Search user" class="form-control me-2">
                     <input type="submit" value="Search" class="btn btn-primary">
                 </form>
             </div>
@@ -97,7 +98,9 @@
                 <thead>
                     <tr>
                         <th>Username</th>
-                        <th>Name</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>User Type</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -105,7 +108,9 @@
                         <?php while ($row = mysqli_fetch_array($searchResult)): ?>
                             <tr onclick="viewTransactionHistory('<?=$row['id']?>')">
                                 <td><?= htmlspecialchars($row['username']) ?></td>
-                                <td><?= htmlspecialchars($row['firstName'] . " " . $row['lastName']) ?></td>
+                                <td><?= htmlspecialchars($row['firstName']) ?></td>
+                                <td><?= htmlspecialchars($row['lastName']) ?></td>
+                                <td><?= htmlspecialchars($row['userType']) ?></td>
                             </tr>
                         <?php endwhile; ?>
                     <?php endif; ?>
@@ -120,6 +125,7 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script src="sidebar.js"></script>
     <script src="home_sample.js"></script>
     <script src="logout.js"></script>
     <script>

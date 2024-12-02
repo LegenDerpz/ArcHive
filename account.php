@@ -25,7 +25,7 @@
     <div class="wrapper">
         <aside id="sidebar">
             <div class="d-flex">
-                <a class="toggle-btn" href="#">
+                <a class="toggle-btn" href="#" id="sidebar-button">
                     <i class="lni lni-grid-alt"></i>
                 </a>
                 <div class="sidebar-logo">
@@ -40,10 +40,11 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="search_users.php" class="sidebar-link">
-                        <i class="bi bi-search"></i> <!-- Search Users icon -->
-                        <span>Search Users</span>
-                    </a>
+                    <?php 
+                        if (isset($_SESSION['loggedUserType']) && $_SESSION['loggedUserType'] == 'ADMIN') {
+                            include_once 'search_tab.php';
+                        }
+                    ?>
                 </li>
                 <li class="sidebar-item">
                     <a href="books.php" class="sidebar-link">
@@ -52,13 +53,13 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link" onclick="openTab(event, 'borrowedBooks')" id="defaultOpen">
+                    <a href="#" class="sidebar-link" onclick="openTab(event, 'borrowedBooks', 'borrowedBooksTab', 'accountPage')" id="borrowedBooksTab">
                         <i class="bi bi-journal"></i> <!-- Borrowed Books icon -->
                         <span>Borrowed Books</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link" onclick="openTab(event, 'transactions')" id="transactionsTab">
+                    <a href="#" class="sidebar-link" onclick="openTab(event, 'transactions', 'transactionsTab', 'accountPage')" id="transactionsTab">
                         <i class="bi bi-cash-stack"></i> <!-- Transactions icon -->
                         <span>Transactions</span>
                     </a>
@@ -162,10 +163,10 @@
     </div>
 
 </div>
+    <script src="sidebar.js"></script>
     <script src="return_book.js"></script>
     <script src="tabs.js"></script>
     <script src="logout.js"></script>
     <script src="home_sample.js"></script>
-
 </body>
 </html>

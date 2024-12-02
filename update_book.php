@@ -75,8 +75,18 @@
         }
 
         if(!empty($updates)){
-            $updateQuery = $updateQueryStart . implode(", ", $updates) . " WHERE id = '$bookId'";
-            $updateResult = mysqli_query($conn, $updateQuery);
+            // $updateQuery = $updateQueryStart . implode(", ", $updates) . " WHERE id = '$bookId'";
+            $newUpdateQuery = "UPDATE book SET 
+                               title = '$updateTitle',
+                               authorId = '$authorId',
+                               genre = '$updateGenre',
+                               publicationDate = '$updatePublicationDate',
+                               description = '$updateDescription',
+                               quantity = '$updateQuantity',
+                               imageLocation = '$updateImageLocation'
+                               WHERE id = '$bookId'
+                               ";
+            $updateResult = mysqli_query($conn, $newUpdateQuery);
             if($_FILES['bookImage']["name"] !== ''){
                 $updateImageFile = $_ENV['IMAGE_LOCATION']."$bookId/" . $_FILES['bookImage']["name"];
                 $previousBookImageDir = $_ENV['IMAGE_LOCATION']."$bookId/" . $previousBookImageFile;
@@ -120,18 +130,18 @@
             <form action="update_book.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="bookId" id="bookIdInput">
                 <label>Title</label><br>
-                <input type="text" name="updateTitle" placeholder="Title"><br><br>
+                <input type="text" name="updateTitle" placeholder="Title" id="updateTitle" required><br><br>
                 <label>Author</label><br>
-                <input type="text" name="updateFirstName" placeholder="First Name"><br>
-                <input type="text" name="updateLastName" placeholder="Last Name"><br><br>
+                <input type="text" name="updateFirstName" placeholder="First Name" id="updateFirstName" required><br>
+                <input type="text" name="updateLastName" placeholder="Last Name" id="updateLastName" required><br><br>
                 <label>Genre</label><br>
-                <input type="text" name="updateGenre" placeholder="Genre"><br><br>
+                <input type="text" name="updateGenre" placeholder="Genre" id="updateGenre"><br><br>
                 <label>Description</label><br>
-                <textarea id="inputDescription" name="updateDescription" placeholder="Enter description" rows="7" cols="40"></textarea><br><br>
+                <textarea id="updateDescription" name="updateDescription" placeholder="Enter description" rows="7" cols="40"></textarea><br><br>
                 <label>Quantity</label><br>
-                <input type="number" name="updateQuantity" min="0" placeholder="Quantity"><br><br>
+                <input type="number" name="updateQuantity" min="0" placeholder="Quantity" id="updateQuantity" required><br><br>
                 <label>Publication Date</label><br>
-                <input type="date" name="updatePublicationDate"><br><br>
+                <input type="date" name="updatePublicationDate" id="updatePublicationDate"><br><br>
                 <label>Thumbnail</label><br>
                 <input type="file" id="updateBookImage" name="bookImage" accept="image/png, image/jpeg, image/jpg"><br><br>
                 <input type="submit" class="updateBtn" value="Update">

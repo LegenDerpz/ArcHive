@@ -37,7 +37,7 @@
     <div class="wrapper">
     <aside id="sidebar">
     <div class="d-flex">
-        <button class="toggle-btn" type="button">
+        <button class="toggle-btn" type="button" id="sidebar-button">
             <i class="lni lni-grid-alt"></i>
         </button>
         <div class="sidebar-logo">
@@ -53,10 +53,11 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a href="search_users.php" class="sidebar-link">
-                <i class="bi bi-search"></i> <!-- Search Users icon -->
-                <span>Search Users</span>
-            </a>
+            <?php 
+                if (isset($_SESSION['loggedUserType']) && $_SESSION['loggedUserType'] == 'ADMIN') {
+                    include_once 'search_tab.php';
+                }
+            ?>
         </li>
         <li class="sidebar-item">
             <a href="books.php" class="sidebar-link">
@@ -100,7 +101,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <!-- <div class="col-md-4">
                             <div class="card mb-3">
                                 <div class="card-body text-center">
                                     <i class="bi bi-people fs-2"></i>
@@ -109,7 +110,7 @@
                                     <a href="search_users.php" class="btn btn-primary">Find Users</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-4">
                             <div class="card mb-3">
                                 <div class="card-body text-center">
@@ -133,7 +134,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="home_sample.js"></script>
     <script src="logout.js"></script>
-
+    <script src="sidebar.js"></script>
 </body>
 
 </html>

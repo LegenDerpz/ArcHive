@@ -32,7 +32,7 @@
         //
 
         $addBookQuery = "INSERT INTO book (title, authorId, genre, quantity, publicationDate, description)
-                        VALUES ('$addTitle', '$authorId', '$addGenre', '$addQuantity', '$addPubDate', '$addDescription);";
+                        VALUES ('$addTitle', '$authorId', '$addGenre', '$addQuantity', '$addPubDate', '$addDescription');";
         $addBookResult = mysqli_query($conn, $addBookQuery);
 
         if(!$addBookResult){
