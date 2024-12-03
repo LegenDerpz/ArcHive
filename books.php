@@ -22,7 +22,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="wrapper ">
         <aside id="sidebar">
             <div class="d-flex">
                 <a class="toggle-btn" href="#" id="sidebar-button">
