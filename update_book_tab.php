@@ -34,6 +34,14 @@
                 <?php
                     if(isset($bookSearchResult)){
                         while($row = mysqli_fetch_array($bookSearchResult)){?>
+                            <input type="hidden" value="<?= $row['title'] ?>" id="<?= $row['id'] . "-title-update" ?>">
+                            <input type="hidden" value="<?= $row['firstName'] ?>" id="<?= $row['id'] . "-firstName-update" ?>">
+                            <input type="hidden" value="<?= $row['lastName'] ?>" id="<?= $row['id'] . "-lastName-update" ?>">
+                            <input type="hidden" value="<?= $row['description'] ?>" id="<?= $row['id'] . "-description-update" ?>">
+                            <input type="hidden" value="<?= $row['genre'] ?>" id="<?= $row['id'] . "-genre-update" ?>">
+                            <input type="hidden" value="<?= $row['publicationDate'] ?>" id="<?= $row['id'] . "-publicationDate-update" ?>">
+                            <input type="hidden" value="<?= $row['quantity'] ?>" id="<?= $row['id'] . "-quantity-update" ?>">
+
                             <tr>
                                 <td style="text-align: left;"><?=$row['title']?></td>
                                 <td><?=$row['firstName']." ". $row['lastName']?></td>

@@ -40,7 +40,7 @@
 </head>
 <body>
     <div class="signup-container">
-        <a href="welcome_to_ArcHive.php"><img src="css/assets/logo.png" alt="ArcHive Logo" class="logo"></a>
+        <a href="ArcHive.php"><img src="css/assets/logo.png" alt="ArcHive Logo" class="logo"></a>
         <h2 class="signup-header">Welcome to ArcHive</h2>
         
         <form action="signup.php" method="POST">

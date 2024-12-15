@@ -37,11 +37,11 @@
     <div class="wrapper">
     <aside id="sidebar">
     <div class="d-flex">
-        <button class="toggle-btn" type="button">
+        <button class="toggle-btn" type="button" id="sidebar-button">
             <i class="lni lni-grid-alt"></i>
         </button>
         <div class="sidebar-logo">
-            <a href="#">ArcHive</a>
+            <a href="home.php">ArcHive</a>
         </div>
     </div>
 
@@ -53,10 +53,11 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a href="search_users.php" class="sidebar-link">
-                <i class="bi bi-search"></i> <!-- Search Users icon -->
-                <span>Search Users</span>
-            </a>
+            <?php 
+                if (isset($_SESSION['loggedUserType']) && $_SESSION['loggedUserType'] == 'ADMIN') {
+                    include_once 'search_tab.php';
+                }
+            ?>
         </li>
         <li class="sidebar-item">
             <a href="books.php" class="sidebar-link">
@@ -103,16 +104,6 @@
                         <div class="col-md-4">
                             <div class="card mb-3">
                                 <div class="card-body text-center">
-                                    <i class="bi bi-people fs-2"></i>
-                                    <h5 class="card-title">Connect with Users</h5>
-                                    <p class="card-text">Search and connect with other readers in the community.</p>
-                                    <a href="search_users.php" class="btn btn-primary">Find Users</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card mb-3">
-                                <div class="card-body text-center">
                                     <i class="bi bi-person-circle fs-2"></i>
                                     <h5 class="card-title">Manage Your Account</h5>
                                     <p class="card-text">Update your profile and view your reading history.</p>
@@ -126,6 +117,7 @@
         </div>
 
  </div>
+    <script src="sidebar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>

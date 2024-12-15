@@ -23,11 +23,11 @@
     <div class="wrapper">
         <aside id="sidebar">
             <div class="d-flex">
-                <a class="toggle-btn" href="#">
+                <a class="toggle-btn" href="#" id="sidebar-button">
                     <i class="lni lni-grid-alt"></i>
                 </a>
                 <div class="sidebar-logo">
-                    <a href="#">ArcHive</a>
+                    <a href="home.php">ArcHive</a>
                 </div>
             </div>
             <ul class="sidebar-nav">
@@ -37,19 +37,13 @@
                         <span>Home</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="search_users.php" class="sidebar-link">
-                        <i class="bi bi-search"></i> <!-- Search Users icon -->
-                        <span>Search Users</span>
-                    </a>
-                </li>
                 <?php 
                     if (isset($_SESSION['loggedUserType']) && $_SESSION['loggedUserType'] == 'ADMIN') {
                         include_once 'admin_tabs.php';
                     }
                 ?>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link" onclick="openTab(event, 'browseBooks')" id="browseTab">
+                    <a href="#" class="sidebar-link" onclick="openTab(event, 'browseBooks', 'browseTab', 'booksPage')" id="browseTab">
                         <i class="bi bi-collection"></i> <!-- Books icon -->
                         <span>Browse Books</span>
                     </a>
@@ -131,7 +125,7 @@
                                                                 }
                                                         ?>                                                       
                                                             <!-- Book Image and Label Container -->
-                                                            <div>
+                                                            <div style="text-align:center">
                                                                 <input type="hidden" value="<?= $row['title'] ?>" id="<?= $row['id'] . "-title" ?>">
                                                                 <input type="hidden" value=
                                                                     "
