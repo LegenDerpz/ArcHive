@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/browse_books.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -87,80 +88,84 @@
                 }
             ?>
             <br>
-            
-            <?php 
-                //Genres Section
-                $allGenresQuery = "SELECT genre FROM genres";
-                $allGenresResult = mysqli_query($conn, $allGenresQuery);
-                $genreHeaderResult = mysqli_query($conn, $allGenresQuery);
+            <div id="genras" class="flex flex-col">
+                <?php
+                    //Genres Section
+                    $allGenresQuery = "SELECT genre FROM genres";
+                    $allGenresResult = mysqli_query($conn, $allGenresQuery);
+                    $genreHeaderResult = mysqli_query($conn, $allGenresQuery);
 
-                if($allGenresResult->num_rows > 0){
-                    if(isset($genreHeaderResult)){
-                        while($g_row = mysqli_fetch_array($genreHeaderResult)){
+                    if($allGenresResult->num_rows > 0){
+                        if(isset($genreHeaderResult)){
+                            while($g_row = mysqli_fetch_array($genreHeaderResult)){
 
-                            $currentGenre = $g_row['genre'];
+                                $currentGenre = $g_row['genre'];
 
-                            $genreFilteredAllBooksQuery = "
-                            SELECT b.id, b.title, a.firstName, a.lastName, b.genre, b.publicationDate, b.quantity, b.imageLocation, b.description FROM book b
-                            INNER JOIN authors a ON b.authorId=a.id
-                            WHERE genre LIKE '%$currentGenre%' && (b.title LIKE '$bookBrowse%' or a.firstName LIKE '$bookBrowse%' or a.lastName LIKE '$bookBrowse%')";
+                                $genreFilteredAllBooksQuery = "
+                                SELECT b.id, b.title, a.firstName, a.lastName, b.genre, b.publicationDate, b.quantity, b.imageLocation, b.description FROM book b
+                                INNER JOIN authors a ON b.authorId=a.id
+                                WHERE genre LIKE '%$currentGenre%' && (b.title LIKE '$bookBrowse%' or a.firstName LIKE '$bookBrowse%' or a.lastName LIKE '$bookBrowse%')";
 
-                            $genreFilteredAllBooksResult = mysqli_query($conn, $genreFilteredAllBooksQuery);
-            ?>
-                <table> 
-                    <tbody>
-                        <tr>
-                            <?php 
-                                if(isset($genreFilteredAllBooksResult)){
-                                    if($genreFilteredAllBooksResult->num_rows > 0){ 
-                            ?>
-                            <td><h3 class="genre-header"><?= $g_row['genre'] ?></h3>
-                                <?php }
-                                    while($row = mysqli_fetch_array($genreFilteredAllBooksResult)){
-                                        $location = $_ENV['IMAGE_LOCATION'] . $row['imageLocation'];
-                                        $nullLocation = $row['id'] . "/";
-                
-                                        //If image is null, not found/assigned, or does not exist, assign a placeholder image
-                                        if($row['imageLocation'] == '' || $row['imageLocation'] == $nullLocation || !file_exists($location)){
-                                            $location = $_ENV['IMAGE_LOCATION'] . "default/placeholder_thumbnail.png";
-                                        }
-                                ?>
-                                    <!-- Book Image and Label Container -->
-                                    <div style="float: left; text-align: center;">
-                                        <input type="hidden" value="<?= $row['title'] ?>" id="<?= $row['id'] . "-title" ?>">
-                                        <input type="hidden" value=
-                                            "
+                                $genreFilteredAllBooksResult = mysqli_query($conn, $genreFilteredAllBooksQuery);
+                ?>
+                            <!-- TODO: If genras' items from search is 0, don't display the below <div> -->
+                            <div class="my-16">
+                                <h3 class="genre-header"><?= $g_row['genre'] ?></h3>
+                                <div class="btn-slide-container flex justify-end mb-4 gap-2">
+                                    <button class="bg-neutral-300 w-8 h-8 rounded-full"><</button>
+                                    <button class="bg-neutral-300 w-8 h-8 rounded-full">></button>
+                                </div>  
+                                <div id="<?= $currentGenre; ?>"  class="flex overflow-auto gap-8">
                                                 <?php 
-                                                    $imgLocation = $_ENV['IMAGE_LOCATION'] . $row['imageLocation'];
-                                                    if($row['imageLocation'] == '' || $row['imageLocation'] == $nullLocation || !file_exists($location)){
-                                                        $imgLocation = $_ENV['IMAGE_LOCATION'] . "default/placeholder_thumbnail.png";
-                                                    }
-                                                    echo $imgLocation;
+                                                    if(isset($genreFilteredAllBooksResult)){
+                                                        if($genreFilteredAllBooksResult->num_rows > 0){ 
                                                 ?>
-                                            " 
-                                            id="<?= $row['id'] . "-image" ?>"
-                                        >
-                                        <input type="hidden" value="<?= $row['description'] ?>" id="<?= $row['id'] . "-description" ?>">
-                                        <input type="hidden" value="<?= $row['genre'] ?>" id="<?= $row['id'] . "-genre" ?>">
-                                        <input type="hidden" value="<?= $row['firstName'] . " " . $row['lastName'] ?>" id="<?= $row['id'] . "-author" ?>">
-                                        <input type="hidden" value="<?= $row['publicationDate'] ?>" id="<?= $row['id'] . "-pubDate" ?>">
-                                        <input type="hidden" value="<?= $row['quantity'] ?>" id="<?= $row['id'] . "-quantity" ?>">
+                                                    <?php }
+                                                        while($row = mysqli_fetch_array($genreFilteredAllBooksResult)){
+                                                            $location = $_ENV['IMAGE_LOCATION'] . $row['imageLocation'];
+                                                            $nullLocation = $row['id'] . "/";
+                                    
+                                                            //If image is null, not found/assigned, or does not exist, assign a placeholder image
+                                                            if($row['imageLocation'] == '' || $row['imageLocation'] == $nullLocation || !file_exists($location)){
+                                                                $location = $_ENV['IMAGE_LOCATION'] . "default/placeholder_thumbnail.png";
+                                                            }
+                                                    ?>
+                                                        <!-- Book Image and Label Container -->
+                                                        <div style="float: left; text-align: center;">
+                                                            <input type="hidden" value="<?= $row['title'] ?>" id="<?= $row['id'] . "-title" ?>">
+                                                            <input type="hidden" value=
+                                                                "
+                                                                    <?php 
+                                                                        $imgLocation = $_ENV['IMAGE_LOCATION'] . $row['imageLocation'];
+                                                                        if($row['imageLocation'] == '' || $row['imageLocation'] == $nullLocation || !file_exists($location)){
+                                                                            $imgLocation = $_ENV['IMAGE_LOCATION'] . "default/placeholder_thumbnail.png";
+                                                                        }
+                                                                        echo $imgLocation;
+                                                                    ?>
+                                                                " 
+                                                                id="<?= $row['id'] . "-image" ?>"
+                                                            >
+                                                            <input type="hidden" value="<?= $row['description'] ?>" id="<?= $row['id'] . "-description" ?>">
+                                                            <input type="hidden" value="<?= $row['genre'] ?>" id="<?= $row['id'] . "-genre" ?>">
+                                                            <input type="hidden" value="<?= $row['firstName'] . " " . $row['lastName'] ?>" id="<?= $row['id'] . "-author" ?>">
+                                                            <input type="hidden" value="<?= $row['publicationDate'] ?>" id="<?= $row['id'] . "-pubDate" ?>">
+                                                            <input type="hidden" value="<?= $row['quantity'] ?>" id="<?= $row['id'] . "-quantity" ?>">
 
-                                        <a onclick="borrowPrompt('<?= $row['id']; ?>')">
-                                            <img class="thumbnail" src="<?=$location?>" alt="Thumbnail"><br>
-                                        </a>
-                                        <label style="width: 9vw;"><?= $row['title'] ?></label>
-                                    </div>
-                                <?php 
-                                    }
-                                    //Reset table data index to 0 to recreate the table
-                                    mysqli_data_seek($genreFilteredAllBooksResult, 0);
-                                } ?>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            <?php }}} ?>
+                                                            <a onclick="borrowPrompt('<?= $row['id']; ?>')">
+                                                                <img class="thumbnail min-w-40" src="<?=$location?>" alt="Thumbnail"><br>
+                                                            </a>
+                                                            <label class="text-sm text-start"><?= $row['title'] ?></label>
+                                                        </div>
+                                                        <!-- Book Image and Label Container -->
+                                                    <?php 
+                                                        }
+                                                        //Reset table data index to 0 to recreate the table
+                                                        mysqli_data_seek($genreFilteredAllBooksResult, 0);
+                                                    } ?> 
+                                </div>
+                            </div>
+                <?php }}} ?>
+            </div>
             <div id="borrow-container"></div>
         </div>
     </div>
@@ -170,6 +175,27 @@
     <script src="tabs.js"></script>
     <script src="logout.js"></script>
     <script src="home_sample.js"></script>
+    <script>
+        // This is the script for horizontal scroll on each genras
+        const genrasContainer =document.getElementById("genras");
+        
+        const btnSlides = document.getElementsByClassName("btn-slide-container");
+
+        for (let index = 0; index < btnSlides.length; index++) {
+            const genras = btnSlides[index];
+            
+            const left = genras.children[0];
+            const right = genras.children[1];
+
+            left.addEventListener('click', () => {
+                genrasContainer.children[index].children[2].scrollBy({left: -600, behavior: "smooth"})
+            });
+
+            right.addEventListener('click', () => {
+                genrasContainer.children[index].children[2].scrollBy({left: 600, behavior: "smooth"})
+            });
+        }
+    </script>
 
 </body>
 </html>
