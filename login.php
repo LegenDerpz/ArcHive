@@ -46,7 +46,7 @@
 </head>
 <body>
     <div class="login-container">
-        <a href="welcome_to_ArcHive.php"><img src="css/assets/logo.png" alt="ArcHive Logo" class="logo"></a>
+        <a href="ArcHive.php"><img src="css/assets/logo.png" alt="ArcHive Logo" class="logo"></a>
         <h2 class="login-header">Welcome to ArcHive</h2>
         <form action="login.php" method="POST">
         <div class="form-group input-group">

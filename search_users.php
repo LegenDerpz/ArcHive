@@ -24,7 +24,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar With Bootstrap</title>
+    <title>Search Users</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -36,13 +36,13 @@
 
 <body>
     <div class="wrapper">
-      <aside id="sidebar">
+    <aside id="sidebar">
         <div class="d-flex">
             <button class="toggle-btn" type="button" id="sidebar-button">
                 <i class="lni lni-grid-alt"></i>
             </button>
             <div class="sidebar-logo">
-                <a href="#">ArcHive</a>
+                <a href="home.php">ArcHive</a>
             </div>
         </div>
         <ul class="sidebar-nav">
@@ -77,15 +77,16 @@
                 <span>Logout</span>
             </a>
         </div>
-    </aside>
-    <div class="main p-3">
+    </aside>    <div class="main p-3">
         <div class="search-section">
             <h2 class="text-center my-4">Search Users</h2>
             <div class="search-container mb-3">
-                <form action="search_users.php" method="GET" class="d-flex">
-                    <input type="text" id="searchUser" name="searchUser" placeholder="Search user" class="form-control me-2">
-                    <input type="submit" value="Search" class="btn btn-primary">
-                </form>
+                <form action="search_users.php" method="GET" class="d-flex w-100">
+                    <input type="text" id="searchUser" name="searchUser" placeholder="Search user" class="form-control me-2 w-100 py-2">
+                    <button type="submit" class="btn btn-primary ms-2 py-2">
+                    <i class="bi bi-search"></i> Search
+                </button>
+                    </form>
             </div>
 
             <?php if ($searchResult && $searchResult->num_rows == 0): ?>
@@ -125,14 +126,16 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-    <script src="sidebar.js"></script>
     <script src="home_sample.js"></script>
     <script src="logout.js"></script>
+    <script src="sidebar.js"></script>
+    
     <script>
         const viewTransactionHistory = (id) => {
             window.location.href = "user_transaction_history.php?id=" + id;
         }
     </script>
+
 </body>
 
 </html>

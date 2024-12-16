@@ -5,20 +5,16 @@ window.onload = function(){
         document.getElementById(getActiveTab()).click();
     }
 };
-
 function openAccountTab(){
     
 }
-
 function setActiveTab(cookieName, cookieValue){
     document.cookie = cookieName + "=" + cookieValue + ";"
 }
-
 function getActiveTab(){
     let name = "activeAccountTab=";
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(";");
-
     for(let i = 0; i <ca.length; i++) {
         let c = ca[i];
         while (c.charAt(0) == ' ') {

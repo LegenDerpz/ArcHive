@@ -1,5 +1,6 @@
 <?php
     require_once 'config/db_config.php';
+    require_once 'config/session_config.php';
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $updateTitle = $_POST['updateTitle'];
@@ -108,8 +109,15 @@
                     echo 'Error updating file.';
                 }
             }
+
+            if(!$updateResult){
+                $_SESSION['update_error'] = "Error in updating book.";
+                header("Location: books.php");
+                die("Error in updating book.");
+            }
         }
 
+        $_SESSION['update_success'] = "Successfully updated book.";
         header("Location: books.php");
     }
 ?>
@@ -125,28 +133,69 @@
 <body>
     <div id="update-background" class="update-background">
         <div id="update-container" class="update-container">
-            <button class="close">x</button>
-            <h2 class="update-header">Update Book</h2><br><br>
+            <button class="close" id="closeButton">x</button>
+            <h2 class="text-center my-4">Update Book</h2>
             <form action="update_book.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="bookId" id="bookIdInput">
-                <label>Title</label><br>
-                <input type="text" name="updateTitle" placeholder="Title" id="updateTitle" required><br><br>
-                <label>Author</label><br>
-                <input type="text" name="updateFirstName" placeholder="First Name" id="updateFirstName" required><br>
-                <input type="text" name="updateLastName" placeholder="Last Name" id="updateLastName" required><br><br>
-                <label>Genre</label><br>
-                <input type="text" name="updateGenre" placeholder="Genre" id="updateGenre"><br><br>
-                <label>Description</label><br>
-                <textarea id="updateDescription" name="updateDescription" placeholder="Enter description" rows="7" cols="40"></textarea><br><br>
-                <label>Quantity</label><br>
-                <input type="number" name="updateQuantity" min="0" placeholder="Quantity" id="updateQuantity" required><br><br>
-                <label>Publication Date</label><br>
-                <input type="date" name="updatePublicationDate" id="updatePublicationDate"><br><br>
-                <label>Thumbnail</label><br>
-                <input type="file" id="updateBookImage" name="bookImage" accept="image/png, image/jpeg, image/jpg"><br><br>
-                <input type="submit" class="updateBtn" value="Update">
+                <div class="row">        
+                     <div class="col-md-6">
+                       <div class="form-group">
+                            <label>Title</label><br>
+                            <input type="text" name="updateTitle" placeholder="Title" id="updateTitle" required><br><br>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label>Genre</label><br>
+                        <input type="text" name="updateGenre" placeholder="Genre" id="updateGenre"><br><br>    
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                    <h5>Author</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="updateFirstName" placeholder="First Name" id="updateFirstName" required><br>
+                        </div>
+                    </div>
+
+                        <div class="col-md-6">
+                        <div class="form-group">
+                        <input type="text" name="updateLastName" placeholder="Last Name" id="updateLastName" required><br><br>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                        <label>Description</label><br>
+                        <textarea id="updateDescription" name="updateDescription" placeholder="Enter description" rows="3" cols="30"></textarea><br><br>
+                </div>
+           </div>
+                <div class="col-md-6"> 
+                    <div class="form-group">
+                        <label>Quantity</label><br>
+                        <input type="number" name="updateQuantity" min="0" placeholder="Quantity" id="updateQuantity" required><br><br>
+                    </div>
+                </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Publication Date</label><br>
+                            <input type="date" name="updatePublicationDate" id="updatePublicationDate"><br><br>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label>Thumbnail</label><br>
+                        <input type="file" id="updateBookImage" name="bookImage" accept="image/png, image/jpeg, image/jpg"><br><br>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                <button type="submit" class="updateBtn btn-primary w-100">Add Book</button>
+            </div>
             </form>
         </div>
+    </div>
     </div>
 </body>
 </html>

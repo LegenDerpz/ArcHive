@@ -3,13 +3,22 @@ window.onload = function(){
         document.getElementById('sidebar-button').click();
     }, 300);
 
-    if(getActiveTab("activeTab") == null || getActiveTab("activeTab") == ''){
+    if((getActiveTab("activeTab") == null || getActiveTab("activeTab") == '') && (getActiveTab("activeAccountTab") == null || getActiveTab("activeAccountTab") == '')){
+        setActiveTab("activeTab", "browseTab");
+        setActiveTab("activeAccountTab", "borrowedBooksTab");
+
         if(document.getElementById("browseTab")){
+            setActiveTab("activeTab", "browseTab");
             document.getElementById("browseTab").click();
         }else{
+            setActiveTab("activeAccountTab", "borrowedBooksTab");
             document.getElementById("borrowedBooksTab").click();
         }
+    }else if(getActiveTab("activeTab") == null || getActiveTab("activeTab") == ''){
+        setActiveTab("activeTab", "browseTab");
+        document.getElementById("browseTab").click();
     }else if(getActiveTab("activeAccountTab") == null || getActiveTab("activeAccountTab") == ''){
+        setActiveTab("activeTab", "browseTab");
         document.getElementById("borrowedBooksTab").click();
     }else{
         if(document.getElementById("browseTab")){
@@ -18,8 +27,6 @@ window.onload = function(){
             document.getElementById(getActiveTab("activeAccountTab")).click();
         }
     }
-    console.log(getActiveTab("activeTab"));
-    console.log(getActiveTab("activeAccountTab"));
 };
 
 function openTab(evt, tabName, tabId, pageName){
