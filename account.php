@@ -74,13 +74,28 @@
         </aside>
 <div class="main p-3">
 
-    <div id="borrowedBooks" class="tabContent col-sm-8 m-3">
-        <h2>Borrowed Books</h2>
+    <div id="borrowedBooks" class="tabContent container ">
+        <h2 class="text-center my-4">Borrowed Books</h2>
         <!-- ADD GROUP BY FILTER -->
-        <form action="account.php" method="GET">
-            <input type="text" id="browseBorrowedBook" name="browseBorrowedBook" placeholder="Search book">
-            <input type="submit" value="Search">
-        </form>
+        <div class="mb-4">
+            <form action="account.php" method="GET" class="d-flex w-100">
+                <input type="text" id="browseBorrowedBook" name="browseBorrowedBook" class="form-control me-2 w-100 py-2" placeholder="Search book" required>
+                <input type="submit" value="Search">
+            </form>
+        </div>
+
+        <div style="color: <?= isset($_SESSION['return_success']) ? 'green' : 'red' ?>;">
+            <?php 
+                if(isset($_SESSION['return_success'])){
+                    echo $_SESSION['return_success'];
+                    unset($_SESSION['return_success']);
+                }else if(isset($_SESSION['return_error'])){
+                    echo $_SESSION['return_error'];
+                    unset($_SESSION['return_error']);
+                }
+            ?>
+        </div>
+
         <?php
             if($browseBorrowedBookResult->num_rows == 0){
                 echo 'No results found.';
@@ -118,12 +133,17 @@
         <div id="return-container"></div>
     </div>
 
-    <div id="transactions" class="tabContent col-sm-11 m-3">
-        <h2>Transaction History</h2>
-        <form action="account.php" method="GET">
-            <input type="text" id="transactionSearch" name="transactionSearch" placeholder="Search">
-            <input type="submit" value="Search">
+    <div id="transactions" class="tabContent m-3 container">
+        <h2 class="text-center my-4">Transaction History</h2>
+        <div class="mb-4">
+        <form action="account.php" method="GET" class="d-flex w-100">
+            <input type="text" id="transactionSearch" name="transactionSearch"  class="form-control me-2 w-100 py-2" placeholder="Search book" required>
+            <button type="submit" class="btn btn-primary ms-2 py-2">
+                    <i class="bi bi-search"></i> Search
+            </button>
         </form>
+    </div>
+    
         <?php
             if($transactionSearchResult->num_rows == 0){
                 echo 'No results found.';
@@ -155,7 +175,7 @@
                                 <td><?=$row['borrowDate']?></td>
                                 <td><?=$row['returnDate']?></td>
                                 <td><?=$row['transactionQuantity']?></td>
-                                <td><?=$row['status']?></td>
+                                <td style="color: <?= ($row['status'] == 'BORROWED') ? 'red' : 'green'?>;"><?=$row['status']?></td>
                             </tr>
                     <?php }} ?>
             </tbody>

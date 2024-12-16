@@ -26,8 +26,8 @@
             <p>Are you sure you want to delete this book?</p><br>
             <form action="delete_book.php" method="POST" class="delete-form">
                 <input type="hidden" name="bookId" id="bookIdInput">
-                <input type="submit" value="YES" class="delete-btn" id="deleteBtnYes">
-                <input type="button" value="NO" class="delete-btn" id="deleteBtnNo">
+                <button type="submit" class="delete-btn" id="deleteBtnYes">YES</button>
+                <button type="button" class="delete-btn" id="deleteBtnNo">NO</button>
             </form>
         </div>
     </div>

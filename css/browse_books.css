@@ -1,4 +1,14 @@
-.thumbnail{
+.bookImage {
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+}
+
+.book-info-container {
+    padding: 20px;
+}
+
+.thumbnail {
     border-radius: 2%;
     width: 10vw;
     height: 30vh;
@@ -8,13 +18,35 @@
     transition: 0.2s all;
 }
 
-.thumbnail:hover{
+.thumbnail:hover {
     transform: scale(1.1);
     margin-left: 0.6vw;
     margin-right: 0.6vw;
     margin-bottom: 2vh;
 }
 
-.genre-header{
+.genre-header {
     margin-bottom: -50px;
+}
+
+.borrow-form .form-group input {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+#borrowBtnYes, #borrowBtnCancel {
+    width: 48%;
+    margin-right: 4%;
+    margin-bottom: 10px;
+}
+
+#borrowBtnCancel {
+    margin-right: 0;
+}
+
+#borrow-container {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
 }

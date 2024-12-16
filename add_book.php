@@ -1,5 +1,6 @@
 <?php
     require_once 'config/db_config.php';
+    require_once 'config/session_config.php';
 
     $target_dir = $_ENV['IMAGE_LOCATION'];
     
@@ -36,6 +37,8 @@
         $addBookResult = mysqli_query($conn, $addBookQuery);
 
         if(!$addBookResult){
+            $_SESSION['add_error'] = "Error in adding book.";
+            header("Location: books.php");
             die("Unable to insert new book.");
         }
 
@@ -76,6 +79,7 @@
             echo 'Error uploading file.';
         }
 
+        $_SESSION['add_success'] = "Successfully added new book.";
         header("Location: books.php");
     }
 ?>

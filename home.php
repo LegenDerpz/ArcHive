@@ -16,7 +16,6 @@
     }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,6 +30,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
      <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/home.css">
+    
 </head>
 
 <body>
@@ -81,42 +82,45 @@
 </aside>
 
 
-    <div class="main p-3">
-       <div class="welcome-section text-center mt-5">
-                    <h1>Welcome to ArcHive!</h1>
-                    <p class="lead">Your one-stop library for all your reading needs.</p>
-                    <p>Explore our extensive collection of books and connect with fellow readers.</p>
-                </div>
+<div class="main p-3">
+    <!-- Welcome Section -->
+    <div class="welcome-section text-center mt-5">
+        <h1 class="display-3 fw-bold" style="color:#47596f;">Welcome to ArcHive!</h1>
+        <p class="lead">Your one-stop library for all your reading needs.</p>
+        <p class="fs-5 text-muted">Explore our extensive collection of books and connect with fellow readers.</p>
+    </div>
 
-                <div class="features-section mt-4">
-                    <h2>Features</h2>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card mb-3">
-                                <div class="card-body text-center">
-                                    <i class="bi bi-bookmarks fs-2"></i>
-                                    <h5 class="card-title">Browse Books</h5>
-                                    <p class="card-text">Access a wide variety of books across different genres.</p>
-                                    <a href="books.php" class="btn btn-primary">Browse Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card mb-3">
-                                <div class="card-body text-center">
-                                    <i class="bi bi-person-circle fs-2"></i>
-                                    <h5 class="card-title">Manage Your Account</h5>
-                                    <p class="card-text">Update your profile and view your reading history.</p>
-                                    <a href="Account.php" class="btn btn-primary">Go to Account</a>
-                                </div>
-                            </div>
-                        </div>
+    <!-- Features Section -->
+    <div class="features-section mt-5">
+        <h2 class="text-center mb-4 display-4">Our Features</h2>
+        <div class="row g-4 justify-content-center">
+            <!-- Browse Books Card -->
+            <div class="col-md-4">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-body text-center">
+                        <i class="bi bi-bookmarks fs-3 " style="color:#b18653; margin-bottom: 3rem;"></i>
+                        <h5 class="card-title fs-4 fw-bold">Browse Books</h5>
+                        <p class="card-text text-muted mb-3" >Access a wide variety of books across different genres.</p>
+                        <a href="books.php" class="btn btn-primary btn-lg px-4 py-2 rounded-3">Browse Now</a>
                     </div>
                 </div>
-            </main>
-        </div>
+            </div>
 
- </div>
+            <!-- Manage Your Account Card -->
+            <div class="col-md-4">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-body text-center">
+                        <i class="bi bi-person-circle fs-3" style="color:#b18653; margin-bottom: 3rem;"></i>
+                        <h5 class="card-title fs-4 fw-bold">Manage Your Account</h5>
+                        <p class="card-text text-muted mb-3">Update your profile and view your reading history.</p>
+                        <a href="Account.php" class="btn btn-primary btn-lg px-4 py-2 rounded-3">Go to Account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
     <script src="sidebar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"

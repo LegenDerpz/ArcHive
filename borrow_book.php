@@ -31,7 +31,10 @@
             $addTransactionResult = mysqli_query($conn, $addTransactionQuery); 
         }else{
             //Error message: Request amount is greater then available books
+            $_SESSION['borrow_error'] = "Request amount is greater then available books.";
+            header("Location: books.php");
         }
+        $_SESSION['borrow_success'] = "Successfully borrowed book.";
         header("Location: books.php");
     }
 ?>
@@ -43,29 +46,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Borrow Book</title>
     <link rel="stylesheet" href="css/borrow_book.css">
+    <link rel="stylesheet" href="css/browse_books.css">
 </head>
 <body>
     <div id="borrow-background" class="borrow-background">
         <div id="borrow-container" class="borrow-container">
-            <div>
-                <img class="bookImage" src="<?= $imageLocation ?>" id="currentBookImage" alt="Book Image" style="float: left;">
-                <h2 class="bookTitle" id="currentBookTitle">TITLE</h2><br>
-                <p id="currentBookAuthor">Author</p>
-                <p id="currentBookDescription">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in turpis non ante semper interdum sit amet porttitor lacus. 
-                    In ligula turpis, auctor eget molestie ut, pretium sed erat. Mauris finibus, erat et blandit sagittis, felis dolor pulvinar orci, 
-                    quis commodo nisi ex sit amet arcu.
-                </p>
-                <p id="currentBookGenre">Genre</p>
-                <p id="currentBookPubDate">Publication Date</p>
-                <p id="currentBookQuantity">Quantity</p>
+            <div class="row">
+                <div class="col-md-4" style="margin-top: 20%">
+                    <img class="bookImage img-fluid rounded" src="<?= $imageLocation ?>" id="currentBookImage" alt="Book Image">
+                </div>
+
+                <div class="col-md-8">
+                    <h2 class="bookTitle" id="currentBookTitle">TITLE</h2><br>
+                    <p id="currentBookAuthor" class="book-author">Author</p>
+                    <p id="currentBookDescription" class="book-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in turpis non ante semper interdum sit amet porttitor lacus. 
+                        In ligula turpis, auctor eget molestie ut, pretium sed erat. Mauris finibus, erat et blandit sagittis, felis dolor pulvinar orci, 
+                        quis commodo nisi ex sit amet arcu.
+                    </p>
+                    <p id="currentBookGenre" class="book-genre">Genre</p>
+                    <p id="currentBookPubDate" class="book-pubDate">Publication Date</p>
+                    <p id="currentBookQuantity" class="book-quantity">Quantity</p>
+                </div>
             </div>
             
             <form action="borrow_book.php" method="POST" class="borrow-form">
                 <input type="hidden" name="bookId" id="bookIdInput">
-                <input type="number" name="borrowQuantity" id="borrowQuantity" min="1" placeholder="Enter borrow quantity" required><br><br>
-                <input type="submit" value="BORROW" class="borrow-btn" id="borrowBtnYes">
-                <input type="button" value="CANCEL" class="borrow-btn" id="borrowBtnCancel">
+                <div class="form-group">
+                    <input type="number" name="borrowQuantity" id="borrowQuantity" class="form-control" min="1" placeholder="Enter borrow quantity" required><br><br>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="BORROW" class="borrow-btn btn-primary" id="borrowBtnYes">
+                    <input type="submit" value="CANCEL" class="borrow-btn btn-secondary" id="borrowBtnCancel" style="margin-left: -10px">
+                </div>
             </form>
         </div>
     </div>

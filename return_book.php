@@ -45,10 +45,13 @@
                                     VALUES ('$returningUserId', '$bookId', '$returnDate', '$returnQuantity', 'RETURNED');";
             $addTransactionResult = mysqli_query($conn, $addTransactionQuery); 
         }else{
-            //Error message to form
-            //echo 'Error: Request amount is greater then available books';
+            // Error message to form
+            $_SESSION['return_error'] = "Error returning book. Return amount is greater than borrowed books.";
+            header("Location: account.php");
+            die("Error returning book.");
         }
-        // header("Location: account.php");
+        $_SESSION['return_success'] = "Successfully returned book.";
+        header("Location: account.php");
     }
 ?>
 
@@ -69,7 +72,7 @@
                 <input type="hidden" name="borrowId" id="borrowIdInput">
                 <input type="number" name="returnQuantity" id="returnQuantity" min="1" placeholder="Quantity" required><br><br>
                 <input type="submit" value="RETURN" class="return-btn" id="returnBtnYes">
-                <input type="button" value="CANCEL" class="return-btn" id="returnBtnCancel">
+                <input type="submit" value="CANCEL" class="return-btn" id="returnBtnCancel">
             </form>
         </div>
     </div>
